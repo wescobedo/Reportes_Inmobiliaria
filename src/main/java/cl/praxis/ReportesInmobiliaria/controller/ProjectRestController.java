@@ -40,6 +40,17 @@ public class ProjectRestController {
         return new ResponseEntity<>(project, status);
     }
 
+    @PostMapping
+    public ResponseEntity<Project> create(@RequestBody Project project){
+        Project projectCreated = service.create(project);
 
+        if (projectCreated == null){
+            status = HttpStatus.CONFLICT;
+        } else {
+            status = HttpStatus.CREATED;
+        }
+
+        return new ResponseEntity<>(projectCreated, status);
+    }
 
 }

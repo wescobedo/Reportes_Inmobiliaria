@@ -5,8 +5,8 @@ import java.util.List;
 public interface ProjectService {
     List<Project> findAll();
     Project findOne(int id);
-    boolean create(Project project);
-    boolean update(Project project);
+    Project create(Project project);
+    Project update(Project project);
     boolean delete(int id);
 }
 
