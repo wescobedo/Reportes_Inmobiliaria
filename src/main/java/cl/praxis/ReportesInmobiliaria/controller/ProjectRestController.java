@@ -19,10 +19,15 @@ public class ProjectRestController {
     private HttpStatus status = HttpStatus.OK;
 
     @GetMapping
-    public List<Project> findAll(){
-        return service.findAll();
-    }
+    public ResponseEntity<List<Project>> findAll() {
+        List<Project> project = service.findAll();
 
+        if (project == null || project.size() == 0) {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(project, status);
+
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Project> findOne(@PathVariable("id") int id){
 
@@ -35,17 +40,6 @@ public class ProjectRestController {
         return new ResponseEntity<>(project, status);
     }
 
-    @PostMapping
-    public ResponseEntity<Project> create(@RequestBody Project project){
-        Project projectCreated = service.create(project);
 
-        if (projectCreated == null){
-            status = HttpStatus.CONFLICT;
-        } else {
-            status = HttpStatus.CREATED;
-        }
-
-        return new ResponseEntity<>(projectCreated, status);
-    }
 
 }

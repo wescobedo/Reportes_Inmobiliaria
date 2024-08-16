@@ -24,13 +24,16 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project create(Project project) {
-        return repository.save(project);
+    public boolean create(Project project) {
+        Project result = repository.save(project);
+        System.out.println("creado el id " + result.getId());
+
+        return result != null;
     }
 
     @Override
     public boolean update(Project project) {
-        Project project = repository.save(project);
+        project = repository.save(project);
 
         return project != null;
     }

@@ -12,7 +12,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="project_id")
     private int id;
+    @Column(name="project_name")
     private String name;
+    @Column(name="project_description")
     private String description;
 
     public Project() {
